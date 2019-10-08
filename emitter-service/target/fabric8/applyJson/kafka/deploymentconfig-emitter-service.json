@@ -1,0 +1,176 @@
+{
+  "apiVersion" : "apps.openshift.io/v1",
+  "kind" : "DeploymentConfig",
+  "metadata" : {
+    "annotations" : {
+      "fabric8.io/git-branch" : "master",
+      "fabric8.io/git-commit" : "e8997fbaa2fe285612a028cd4e1753ef545b1039",
+      "fabric8.io/git-url" : "https://github.com/snandakumar87/emitter-service.git"
+    },
+    "creationTimestamp" : "2019-10-04T14:35:47Z",
+    "generation" : 17,
+    "labels" : {
+      "app" : "emitter-service",
+      "group" : "fraud.demo",
+      "provider" : "fabric8",
+      "version" : "1.0.0.0"
+    },
+    "name" : "emitter-service",
+    "namespace" : "kafka",
+    "resourceVersion" : "1607000",
+    "selfLink" : "/apis/apps.openshift.io/v1/namespaces/kafka/deploymentconfigs/emitter-service",
+    "uid" : "414d98a5-e6b4-11e9-8e8d-0a580a810016"
+  },
+  "spec" : {
+    "replicas" : 1,
+    "revisionHistoryLimit" : 2,
+    "selector" : {
+      "app" : "emitter-service",
+      "group" : "fraud.demo",
+      "provider" : "fabric8"
+    },
+    "strategy" : {
+      "activeDeadlineSeconds" : 21600,
+      "resources" : { },
+      "rollingParams" : {
+        "intervalSeconds" : 1,
+        "maxSurge" : "25%",
+        "maxUnavailable" : "25%",
+        "timeoutSeconds" : 3600,
+        "updatePeriodSeconds" : 1
+      },
+      "type" : "Rolling"
+    },
+    "template" : {
+      "metadata" : {
+        "annotations" : {
+          "fabric8.io/git-branch" : "master",
+          "fabric8.io/git-commit" : "e8997fbaa2fe285612a028cd4e1753ef545b1039",
+          "fabric8.io/git-url" : "https://github.com/snandakumar87/emitter-service.git"
+        },
+        "labels" : {
+          "app" : "emitter-service",
+          "group" : "fraud.demo",
+          "provider" : "fabric8",
+          "version" : "1.0.0.0"
+        }
+      },
+      "spec" : {
+        "containers" : [ {
+          "env" : [ {
+            "name" : "BOOTSTRAP_SERVERS",
+            "value" : "my-cluster-kafka-bootstrap:9092"
+          }, {
+            "name" : "PRODUCER_TOPIC",
+            "value" : "incoming-transaction"
+          }, {
+            "name" : "SECURITY_PROTOCOL",
+            "value" : "PLAINTEXT"
+          }, {
+            "name" : "SERIALIZER_CLASS",
+            "value" : "fraud.analysis.demo.transaction.fraud.analysis.Serde.TransactionSerializer"
+          }, {
+            "name" : "ACKS",
+            "value" : "1"
+          }, {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "apiVersion" : "v1",
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          } ],
+          "image" : "emitter-service:1.0.0.0",
+          "imagePullPolicy" : "IfNotPresent",
+          "name" : "vertx",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 9779,
+            "name" : "prometheus",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 8778,
+            "name" : "jolokia",
+            "protocol" : "TCP"
+          } ],
+          "resources" : {
+            "limits" : {
+              "cpu" : "1",
+              "memory" : "500Mi"
+            },
+            "requests" : {
+              "cpu" : "200m",
+              "memory" : "500Mi"
+            }
+          },
+          "securityContext" : {
+            "privileged" : false
+          },
+          "terminationMessagePath" : "/dev/termination-log",
+          "terminationMessagePolicy" : "File"
+        } ],
+        "dnsPolicy" : "ClusterFirst",
+        "restartPolicy" : "Always",
+        "schedulerName" : "default-scheduler",
+        "securityContext" : { },
+        "terminationGracePeriodSeconds" : 30
+      }
+    },
+    "test" : false,
+    "triggers" : [ {
+      "type" : "ConfigChange"
+    }, {
+      "imageChangeParams" : {
+        "automatic" : true,
+        "containerNames" : [ "vertx" ],
+        "from" : {
+          "kind" : "ImageStreamTag",
+          "name" : "emitter-service:1.0.0.0",
+          "namespace" : "kafka"
+        }
+      },
+      "type" : "ImageChange"
+    }, {
+      "type" : "ConfigChange"
+    } ]
+  },
+  "status" : {
+    "availableReplicas" : 1,
+    "conditions" : [ {
+      "lastTransitionTime" : "2019-10-04T14:36:07Z",
+      "lastUpdateTime" : "2019-10-04T14:36:07Z",
+      "message" : "Deployment config has minimum availability.",
+      "status" : "True",
+      "type" : "Available"
+    }, {
+      "lastTransitionTime" : "2019-10-08T01:25:16Z",
+      "lastUpdateTime" : "2019-10-08T01:25:19Z",
+      "message" : "replication controller \"emitter-service-13\" successfully rolled out",
+      "reason" : "NewReplicationControllerAvailable",
+      "status" : "True",
+      "type" : "Progressing"
+    } ],
+    "details" : {
+      "causes" : [ {
+        "imageTrigger" : {
+          "from" : {
+            "kind" : "DockerImage",
+            "name" : "image-registry.openshift-image-registry.svc:5000/kafka/emitter-service@sha256:7b5a8929b6d926c779bc0cba493c95295007aced41951f9c105557a3c75c7333"
+          }
+        },
+        "type" : "ImageChange"
+      } ],
+      "message" : "image change"
+    },
+    "latestVersion" : 13,
+    "observedGeneration" : 16,
+    "readyReplicas" : 1,
+    "replicas" : 1,
+    "unavailableReplicas" : 0,
+    "updatedReplicas" : 1
+  }
+}

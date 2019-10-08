@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: emitter-service
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: emitter-service@sha256:7b5a8929b6d926c779bc0cba493c95295007aced41951f9c105557a3c75c7333
+        namespace: kafka
+      name: 1.0.0.0

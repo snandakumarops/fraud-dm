@@ -1,0 +1,45 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "fabric8.io/git-branch" : "master",
+      "fabric8.io/git-commit" : "f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed",
+      "fabric8.io/git-url" : "https://github.com/snandakumar87/MakerCheckerUI.git",
+      "prometheus.io/port" : "9779",
+      "prometheus.io/scrape" : "true"
+    },
+    "creationTimestamp" : "2019-10-07T14:50:04Z",
+    "labels" : {
+      "app" : "fraud-dynamic",
+      "expose" : "true",
+      "group" : "fraud.demo",
+      "provider" : "fabric8",
+      "version" : "1.0.0.0"
+    },
+    "name" : "fraud-dynamic",
+    "namespace" : "kafka",
+    "resourceVersion" : "1441397",
+    "selfLink" : "/api/v1/namespaces/kafka/services/fraud-dynamic",
+    "uid" : "bf8f8fe5-e911-11e9-9de4-0aa247c44700"
+  },
+  "spec" : {
+    "clusterIP" : "172.30.99.4",
+    "ports" : [ {
+      "name" : "http",
+      "port" : 8080,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app" : "fraud-dynamic",
+      "group" : "fraud.demo",
+      "provider" : "fabric8"
+    },
+    "sessionAffinity" : "None",
+    "type" : "ClusterIP"
+  },
+  "status" : {
+    "loadBalancer" : { }
+  }
+}

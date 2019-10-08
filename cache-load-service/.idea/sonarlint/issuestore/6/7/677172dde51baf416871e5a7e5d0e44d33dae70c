@@ -1,0 +1,10 @@
+
+rsquid:S2629I"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¬¿ól
+Nsquid:S2629M"7Use the built-in formatting to construct this argument.(ÿÈ˜°
+esquid:S1192-"IDefine a constant instead of duplicating this literal "CUST8089" 5 times.(Õ¡­Âøÿÿÿÿ
+Xsquid:UselessImportCheck"4Remove this unused import 'io.vertx.core.json.Json'.(ÀªÏö
+]squid:UselessImportCheck"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ
+esquid:UselessImportCheck"<Remove this unused import 'io.vertx.ext.web.RoutingContext'.(ü°Áãøÿÿÿÿ
+Tsquid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+ksquid:UselessImportCheck"BRemove this unused import 'io.vertx.core.http.HttpServerResponse'.(Ôîþùÿÿÿÿ
+csquid:UselessImportCheck"?Remove this unused import 'java.time.format.DateTimeFormatter'.(‰÷÷ª

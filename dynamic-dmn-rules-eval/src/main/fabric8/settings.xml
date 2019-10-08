@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <profiles>
+        <profile>
+            <id>redhat-enterprise</id>
+            <repositories>
+
+                <repository>
+                    <id>maven-PAM</id>
+                    <url>http://nexus-nexus.apps.florida-f4f2.open.redhat.com/repository/maven-PAM/</url>
+                </repository>
+
+                <repository>
+                    <id>redhat-ga-repository</id>
+                    <name>Red Hat GA repository</name>
+                    <url>http://maven.repository.redhat.com/ga/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>daily</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>redhat-ga-repository</id>
+                    <name>Red Hat GA repository</name>
+                    <url>http://maven.repository.redhat.com/ga/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>daily</updatePolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+
+
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>redhat-enterprise</activeProfile>
+
+    </activeProfiles>
+
+
+
+
+</settings>

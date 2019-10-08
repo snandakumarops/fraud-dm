@@ -1,0 +1,5 @@
+
+]squid:S1854":Remove this useless assignment to local variable "stream".(½Ï½Ÿøÿÿÿÿ8èÅâÅÖ-
+Nsquid:S1481"+Remove this unused "stream" local variable.(½Ï½Ÿøÿÿÿÿ8èÅâÅÖ-
+hsquid:UselessImportCheck"=Remove this unused import 'org.kie.api.runtime.KieContainer'.(ö¦ƒğ8›éØ-
+ssquid:UselessImportCheck"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8›éØ-

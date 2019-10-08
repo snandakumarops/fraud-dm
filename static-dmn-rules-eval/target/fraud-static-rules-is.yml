@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: fraud-static-rules
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: fraud-static-rules@sha256:e3bd2a57e892e4c21eec4ede8ef0274a41e2461b276dd318ea1790e6f532b44a
+        namespace: kafka
+      name: 1.0.0.0

@@ -1,0 +1,4 @@
+fraud/analysis/demo/service/TransactionsRequest.class
+fraud/analysis/demo/service/EventEmitterService.class
+fraud/analysis/demo/producer/EmitterProducer.class
+fraud/analysis/demo/producer/EmitterConfig.class

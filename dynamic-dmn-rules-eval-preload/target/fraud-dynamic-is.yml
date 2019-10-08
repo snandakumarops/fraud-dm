@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: fraud-dynamic
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: fraud-dynamic@sha256:5cc77dd14796763ac980526cb8151a9a50eba569136ad21f1ea83fee8e296a67
+        namespace: kafka
+      name: 1.0.0.0

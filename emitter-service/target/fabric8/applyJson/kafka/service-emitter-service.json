@@ -1,0 +1,45 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "fabric8.io/git-branch" : "master",
+      "fabric8.io/git-commit" : "e8997fbaa2fe285612a028cd4e1753ef545b1039",
+      "fabric8.io/git-url" : "https://github.com/snandakumar87/emitter-service.git",
+      "prometheus.io/port" : "9779",
+      "prometheus.io/scrape" : "true"
+    },
+    "creationTimestamp" : "2019-10-04T14:35:47Z",
+    "labels" : {
+      "app" : "emitter-service",
+      "expose" : "true",
+      "group" : "fraud.demo",
+      "provider" : "fabric8",
+      "version" : "1.0.0.0"
+    },
+    "name" : "emitter-service",
+    "namespace" : "kafka",
+    "resourceVersion" : "352301",
+    "selfLink" : "/api/v1/namespaces/kafka/services/emitter-service",
+    "uid" : "4135639c-e6b4-11e9-93ed-0aa247c44700"
+  },
+  "spec" : {
+    "clusterIP" : "172.30.168.125",
+    "ports" : [ {
+      "name" : "http",
+      "port" : 8080,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app" : "emitter-service",
+      "group" : "fraud.demo",
+      "provider" : "fabric8"
+    },
+    "sessionAffinity" : "None",
+    "type" : "ClusterIP"
+  },
+  "status" : {
+    "loadBalancer" : { }
+  }
+}

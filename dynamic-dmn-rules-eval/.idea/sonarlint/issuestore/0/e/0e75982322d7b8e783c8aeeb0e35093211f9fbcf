@@ -1,0 +1,8 @@
+
+bsquid:UselessImportCheck"4Remove this unused import 'org.kie.api.KieServices'.(ê¦‡Ìıÿÿÿÿ8‡–ÚÙ-
+qsquid:UselessImportCheck"CRemove this unused import 'org.kie.api.conf.EventProcessingOption'.(ÿ™êèıÿÿÿÿ8‡–ÚÙ-
+fsquid:UselessImportCheck"=Remove this unused import 'org.kie.api.runtime.KieContainer'.(ö¦ƒğ8‡–ÚÙ-
+`squid:S1481"?Remove this unused "updateValidationStatusGlue" local variable.(ù©•Úÿÿÿÿÿ8Ëä–Ù-
+isquid:UselessImportCheck";Remove this unused import 'org.kie.api.runtime.KieSession'.(‰ôãñÿÿÿÿÿ8‡–ÚÙ-
+osquid:S1854"NRemove this useless assignment to local variable "updateValidationStatusGlue".(ù©•Úÿÿÿÿÿ8Ëä–Ù-
+esquid:UselessImportCheck"=Remove this unused import 'org.kie.api.KieBaseConfiguration'.(×ì…}8‡–ÚÙ-

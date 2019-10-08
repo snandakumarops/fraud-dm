@@ -1,0 +1,20 @@
+
+psquid:UselessImportCheck"ERemove this unused import 'org.apache.kafka.streams.kstream.Printed'.(ð£ûþ8¾£Ê¿Ù-
+esquid:UselessImportCheck":Remove this unused import 'org.kie.api.time.SessionClock'.(¾­é¯8¾£Ê¿Ù-
+V
+squid:S106U"9Replace this use of System.out or System.err by a logger.(þ¹šà8ûÀÚ¿Ù-
+isquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(îŒã8ž…„ÀÙ-
+V
+squid:S106Y"9Replace this use of System.out or System.err by a logger.(–—“²8¾£Ê¿Ù-
+esquid:UselessImportCheck":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™þ8¾£Ê¿Ù-
+Hsquid:S1172M"*Remove this unused method parameter "key".(çÖÁ¶8¾£Ê¿Ù-
+isquid:HiddenFieldCheckE";Rename "streams" which hides the field declared at line 44.(ƒýÌ¦ÿÿÿÿÿ8¾£Ê¿Ù-
+psquid:UselessImportCheck"ERemove this unused import 'org.apache.kafka.streams.kstream.Reducer'.(óÌº8Ž­¸ÆÙ-
+W
+squid:S106™"9Replace this use of System.out or System.err by a logger.(ªûâ…8ÇïÉÆÙ-
+Jsquid:S1068(",Remove this unused "clientId" private field.(žÔýµ8¾£Ê¿Ù-
+Jsquid:S1068""'Remove this unused "LOG" private field.(ÿµû²þÿÿÿÿ8¾£Ê¿Ù-
+jsquid:HiddenFieldCheckƒ";Rename "streams" which hides the field declared at line 44.(ƒýÌ¦ÿÿÿÿÿ8Ï—éÅÙ-
+psquid:UselessImportCheck"@Remove this unused import 'org.kie.api.time.SessionPseudoClock'.(šË°›üÿÿÿÿ8¾£Ê¿Ù-
+psquid:UselessImportCheck"@Remove this unused import 'org.kie.api.runtime.rule.FactHandle'.(èÁûÿÿÿÿ8¾£Ê¿Ù-
+Ksquid:S1172",Remove this unused method parameter "txnId".(±°•€8Ï—éÅÙ-

@@ -1,0 +1,29 @@
+spec:
+  template:
+    spec:
+      containers:
+        -
+#          resources:
+#            requests:
+#              cpu: "0.2"
+#              memory: 256Mi
+#            limits:
+#              cpu: "1.0"
+#              memory: 256Mi
+          env:
+
+            - name: BOOTSTRAP_SERVERS
+              value: "my-cluster-kafka-bootstrap:9092"
+            - name: INCOMING_TRANSACTION
+              value: incoming-transaction
+            - name: STATIC_EVAL_STATUS
+              value: fraud-topic
+            - name: APPLICATION_ID
+              value: eval-status
+            - name: CLIENT_ID
+              value: eval-status
+
+
+
+
+

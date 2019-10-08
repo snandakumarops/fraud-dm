@@ -1,0 +1,95 @@
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    fabric8.io/git-commit: f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed
+    fabric8.io/git-branch: master
+    fabric8.io/git-url: https://github.com/snandakumar87/MakerCheckerUI.git
+  labels:
+    app: fraud-static-rules
+    provider: fabric8
+    version: 1.0.0.0
+    group: fraud.demo
+  name: fraud-static-rules
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    app: fraud-static-rules
+    provider: fabric8
+    group: fraud.demo
+  strategy:
+    rollingParams:
+      timeoutSeconds: 3600
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        fabric8.io/git-commit: f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed
+        fabric8.io/git-branch: master
+        fabric8.io/git-url: https://github.com/snandakumar87/MakerCheckerUI.git
+      labels:
+        app: fraud-static-rules
+        provider: fabric8
+        version: 1.0.0.0
+        group: fraud.demo
+    spec:
+      containers:
+      - env:
+        - name: BOOTSTRAP_SERVERS
+          value: my-cluster-kafka-bootstrap:9092
+        - name: INCOMING_TRANSACTION
+          value: incoming-transaction
+        - name: STATIC_EVAL_STATUS
+          value: fraud-topic
+        - name: APPLICATION_ID
+          value: eval-status
+        - name: CLIENT_ID
+          value: eval-status
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: fraud-static-rules:1.0.0.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 180
+          successThreshold: 1
+        name: spring-boot
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 9779
+          name: prometheus
+          protocol: TCP
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          successThreshold: 1
+        securityContext:
+          privileged: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - spring-boot
+      from:
+        kind: ImageStreamTag
+        name: fraud-static-rules:1.0.0.0
+    type: ImageChange
+  - type: ConfigChange

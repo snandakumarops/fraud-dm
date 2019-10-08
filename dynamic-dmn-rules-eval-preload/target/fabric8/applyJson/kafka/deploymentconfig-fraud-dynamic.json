@@ -1,0 +1,190 @@
+{
+  "apiVersion" : "apps.openshift.io/v1",
+  "kind" : "DeploymentConfig",
+  "metadata" : {
+    "annotations" : {
+      "fabric8.io/git-branch" : "master",
+      "fabric8.io/git-commit" : "f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed",
+      "fabric8.io/git-url" : "https://github.com/snandakumar87/MakerCheckerUI.git"
+    },
+    "creationTimestamp" : "2019-10-07T14:50:05Z",
+    "generation" : 37,
+    "labels" : {
+      "app" : "fraud-dynamic",
+      "group" : "fraud.demo",
+      "provider" : "fabric8",
+      "version" : "1.0.0.0"
+    },
+    "name" : "fraud-dynamic",
+    "namespace" : "kafka",
+    "resourceVersion" : "1825313",
+    "selfLink" : "/apis/apps.openshift.io/v1/namespaces/kafka/deploymentconfigs/fraud-dynamic",
+    "uid" : "bfa718c5-e911-11e9-bb8e-0a580a800025"
+  },
+  "spec" : {
+    "replicas" : 1,
+    "revisionHistoryLimit" : 2,
+    "selector" : {
+      "app" : "fraud-dynamic",
+      "group" : "fraud.demo",
+      "provider" : "fabric8"
+    },
+    "strategy" : {
+      "activeDeadlineSeconds" : 21600,
+      "resources" : { },
+      "rollingParams" : {
+        "intervalSeconds" : 1,
+        "maxSurge" : "25%",
+        "maxUnavailable" : "25%",
+        "timeoutSeconds" : 3600,
+        "updatePeriodSeconds" : 1
+      },
+      "type" : "Rolling"
+    },
+    "template" : {
+      "metadata" : {
+        "annotations" : {
+          "fabric8.io/git-branch" : "master",
+          "fabric8.io/git-commit" : "f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed",
+          "fabric8.io/git-url" : "https://github.com/snandakumar87/MakerCheckerUI.git"
+        },
+        "labels" : {
+          "app" : "fraud-dynamic",
+          "group" : "fraud.demo",
+          "provider" : "fabric8",
+          "version" : "1.0.0.0"
+        }
+      },
+      "spec" : {
+        "containers" : [ {
+          "env" : [ {
+            "name" : "BOOTSTRAP_SERVERS",
+            "value" : "my-cluster-kafka-bootstrap:9092"
+          }, {
+            "name" : "INCOMING_TRANSACTION",
+            "value" : "incoming-transaction"
+          }, {
+            "name" : "DYNAMIC_EVAL_STATUS",
+            "value" : "fraud-topic"
+          }, {
+            "name" : "APPLICATION_ID",
+            "value" : "dyn-eval-stats-preload"
+          }, {
+            "name" : "CLIENT_ID",
+            "value" : "dyn-eval-stats-preload"
+          }, {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "apiVersion" : "v1",
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          } ],
+          "image" : "fraud-dynamic:1.0.0.0",
+          "imagePullPolicy" : "IfNotPresent",
+          "livenessProbe" : {
+            "failureThreshold" : 3,
+            "httpGet" : {
+              "path" : "/health",
+              "port" : 8080,
+              "scheme" : "HTTP"
+            },
+            "initialDelaySeconds" : 180,
+            "periodSeconds" : 10,
+            "successThreshold" : 1,
+            "timeoutSeconds" : 1
+          },
+          "name" : "spring-boot",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 9779,
+            "name" : "prometheus",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 8778,
+            "name" : "jolokia",
+            "protocol" : "TCP"
+          } ],
+          "readinessProbe" : {
+            "failureThreshold" : 3,
+            "httpGet" : {
+              "path" : "/health",
+              "port" : 8080,
+              "scheme" : "HTTP"
+            },
+            "initialDelaySeconds" : 10,
+            "periodSeconds" : 10,
+            "successThreshold" : 1,
+            "timeoutSeconds" : 1
+          },
+          "resources" : { },
+          "securityContext" : {
+            "privileged" : false
+          },
+          "terminationMessagePath" : "/dev/termination-log",
+          "terminationMessagePolicy" : "File"
+        } ],
+        "dnsPolicy" : "ClusterFirst",
+        "restartPolicy" : "Always",
+        "schedulerName" : "default-scheduler",
+        "securityContext" : { },
+        "terminationGracePeriodSeconds" : 30
+      }
+    },
+    "test" : false,
+    "triggers" : [ {
+      "type" : "ConfigChange"
+    }, {
+      "imageChangeParams" : {
+        "automatic" : true,
+        "containerNames" : [ "spring-boot" ],
+        "from" : {
+          "kind" : "ImageStreamTag",
+          "name" : "fraud-dynamic:1.0.0.0",
+          "namespace" : "kafka"
+        }
+      },
+      "type" : "ImageChange"
+    }, {
+      "type" : "ConfigChange"
+    } ]
+  },
+  "status" : {
+    "availableReplicas" : 0,
+    "conditions" : [ {
+      "lastTransitionTime" : "2019-10-07T14:50:05Z",
+      "lastUpdateTime" : "2019-10-07T14:50:05Z",
+      "message" : "Deployment config does not have minimum availability.",
+      "status" : "False",
+      "type" : "Available"
+    }, {
+      "lastTransitionTime" : "2019-10-08T15:51:02Z",
+      "lastUpdateTime" : "2019-10-08T15:51:02Z",
+      "message" : "replication controller \"fraud-dynamic-24\" is progressing",
+      "reason" : "ReplicationControllerUpdated",
+      "status" : "True",
+      "type" : "Progressing"
+    } ],
+    "details" : {
+      "causes" : [ {
+        "imageTrigger" : {
+          "from" : {
+            "kind" : "DockerImage",
+            "name" : "image-registry.openshift-image-registry.svc:5000/kafka/fraud-dynamic@sha256:5cc77dd14796763ac980526cb8151a9a50eba569136ad21f1ea83fee8e296a67"
+          }
+        },
+        "type" : "ImageChange"
+      } ],
+      "message" : "image change"
+    },
+    "latestVersion" : 24,
+    "observedGeneration" : 36,
+    "replicas" : 1,
+    "unavailableReplicas" : 1,
+    "updatedReplicas" : 1
+  }
+}

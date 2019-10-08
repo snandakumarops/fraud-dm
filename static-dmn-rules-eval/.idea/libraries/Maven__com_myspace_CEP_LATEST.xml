@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.myspace:CEP:LATEST">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/myspace/CEP/LATEST/CEP-LATEST.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/myspace/CEP/LATEST/CEP-LATEST-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/myspace/CEP/LATEST/CEP-LATEST-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

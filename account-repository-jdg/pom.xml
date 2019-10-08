@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fraud.demo</groupId>
+    <artifactId>fraud-analysis-demo</artifactId>
+    <version>1.0.0.0</version>
+  </parent>
+
+  <groupId>fraud.demo</groupId>
+  <artifactId>account-repository-jdg</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0.0</version>
+  <name>account-repository-jdg</name>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>fraud.demo</groupId>
+      <artifactId>transaction-model</artifactId>
+      <version>1.0.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>fraud.demo</groupId>
+      <artifactId>account-repository</artifactId>
+      <version>1.0.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-client-hotrod</artifactId>
+      <version>${infinispan-client-hotrod.version}</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
+    <dependency>
+      <groupId>javax.activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>${activation.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>rtp-creditor-account-repository-jdg</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+      <!-- Use this profile for any OpenShift specific customization your app will need. -->
+      <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+      <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+      <id>openshift</id>
+      <build>
+        <finalName>account-repository-jdg</finalName>
+        <plugins>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

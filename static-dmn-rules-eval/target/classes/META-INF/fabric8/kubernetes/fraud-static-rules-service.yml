@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fabric8.io/git-commit: f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed
+    fabric8.io/git-branch: master
+    fabric8.io/git-url: https://github.com/snandakumar87/MakerCheckerUI.git
+    prometheus.io/port: "9779"
+    prometheus.io/scrape: "true"
+  labels:
+    expose: "true"
+    app: fraud-static-rules
+    provider: fabric8
+    version: 1.0.0.0
+    group: fraud.demo
+  name: fraud-static-rules
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: fraud-static-rules
+    provider: fabric8
+    group: fraud.demo

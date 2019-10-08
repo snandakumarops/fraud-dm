@@ -1,0 +1,10 @@
+
+“squid:UselessImportCheck"eRemove this unused import 'iso.std.iso._20022.tech.xsd.pacs_008_001.FIToFICustomerCreditTransferV06'.(Ö½×şÿÿÿÿ8Ï‡…Ú×-
+tsquid:UselessImportCheck"FRemove this unused import 'rtp.demo.creditor.domain.payments.Payment'.(‹ï›Áıÿÿÿÿ8ÊÖ„Ú×-
+Rsquid:UselessImportCheck"0Remove this unused import 'java.io.InputStream'.(¹»º
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÎîÔ¼üÿÿÿÿ8ÿÎîğ×-
+squid:UselessImportCheck"SRemove this unused import 'iso.std.iso._20022.tech.xsd.pacs_008_001.GroupHeader70'.(¤…šşÿÿÿÿ8ÊÖ„Ú×-
+Šsquid:UselessImportCheck"aRemove this unused import 'iso.std.iso._20022.tech.xsd.pacs_008_001.CreditTransferTransaction25'.(ÓˆûÔ8ÊÖ„Ú×-
+vsquid:UselessImportCheck"HRemove this unused import 'fraud.analysis.demo.transaction.Transaction'.(½ó¿ûÿÿÿÿ8¼­ğğ×-
+Zsquid:UselessImportCheck"1Remove this unused import 'com.google.gson.Gson'.(–§8ÖÛğğ×-

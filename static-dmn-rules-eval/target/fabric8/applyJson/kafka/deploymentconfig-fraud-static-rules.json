@@ -1,0 +1,191 @@
+{
+  "apiVersion" : "apps.openshift.io/v1",
+  "kind" : "DeploymentConfig",
+  "metadata" : {
+    "annotations" : {
+      "fabric8.io/git-branch" : "master",
+      "fabric8.io/git-commit" : "f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed",
+      "fabric8.io/git-url" : "https://github.com/snandakumar87/MakerCheckerUI.git"
+    },
+    "creationTimestamp" : "2019-10-07T14:42:42Z",
+    "generation" : 7,
+    "labels" : {
+      "app" : "fraud-static-rules",
+      "group" : "fraud.demo",
+      "provider" : "fabric8",
+      "version" : "1.0.0.0"
+    },
+    "name" : "fraud-static-rules",
+    "namespace" : "kafka",
+    "resourceVersion" : "1469254",
+    "selfLink" : "/apis/apps.openshift.io/v1/namespaces/kafka/deploymentconfigs/fraud-static-rules",
+    "uid" : "b7bdd41e-e910-11e9-8e8d-0a580a810016"
+  },
+  "spec" : {
+    "replicas" : 1,
+    "revisionHistoryLimit" : 2,
+    "selector" : {
+      "app" : "fraud-static-rules",
+      "group" : "fraud.demo",
+      "provider" : "fabric8"
+    },
+    "strategy" : {
+      "activeDeadlineSeconds" : 21600,
+      "resources" : { },
+      "rollingParams" : {
+        "intervalSeconds" : 1,
+        "maxSurge" : "25%",
+        "maxUnavailable" : "25%",
+        "timeoutSeconds" : 3600,
+        "updatePeriodSeconds" : 1
+      },
+      "type" : "Rolling"
+    },
+    "template" : {
+      "metadata" : {
+        "annotations" : {
+          "fabric8.io/git-branch" : "master",
+          "fabric8.io/git-commit" : "f713f889c02c69e61fec5d6d15fb1f1a3f58f1ed",
+          "fabric8.io/git-url" : "https://github.com/snandakumar87/MakerCheckerUI.git"
+        },
+        "labels" : {
+          "app" : "fraud-static-rules",
+          "group" : "fraud.demo",
+          "provider" : "fabric8",
+          "version" : "1.0.0.0"
+        }
+      },
+      "spec" : {
+        "containers" : [ {
+          "env" : [ {
+            "name" : "BOOTSTRAP_SERVERS",
+            "value" : "my-cluster-kafka-bootstrap:9092"
+          }, {
+            "name" : "INCOMING_TRANSACTION",
+            "value" : "incoming-transaction"
+          }, {
+            "name" : "STATIC_EVAL_STATUS",
+            "value" : "fraud-topic"
+          }, {
+            "name" : "APPLICATION_ID",
+            "value" : "eval-status"
+          }, {
+            "name" : "CLIENT_ID",
+            "value" : "eval-status"
+          }, {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "apiVersion" : "v1",
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          } ],
+          "image" : "fraud-static-rules:1.0.0.0",
+          "imagePullPolicy" : "IfNotPresent",
+          "livenessProbe" : {
+            "failureThreshold" : 3,
+            "httpGet" : {
+              "path" : "/health",
+              "port" : 8080,
+              "scheme" : "HTTP"
+            },
+            "initialDelaySeconds" : 180,
+            "periodSeconds" : 10,
+            "successThreshold" : 1,
+            "timeoutSeconds" : 1
+          },
+          "name" : "spring-boot",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 9779,
+            "name" : "prometheus",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 8778,
+            "name" : "jolokia",
+            "protocol" : "TCP"
+          } ],
+          "readinessProbe" : {
+            "failureThreshold" : 3,
+            "httpGet" : {
+              "path" : "/health",
+              "port" : 8080,
+              "scheme" : "HTTP"
+            },
+            "initialDelaySeconds" : 10,
+            "periodSeconds" : 10,
+            "successThreshold" : 1,
+            "timeoutSeconds" : 1
+          },
+          "resources" : { },
+          "securityContext" : {
+            "privileged" : false
+          },
+          "terminationMessagePath" : "/dev/termination-log",
+          "terminationMessagePolicy" : "File"
+        } ],
+        "dnsPolicy" : "ClusterFirst",
+        "restartPolicy" : "Always",
+        "schedulerName" : "default-scheduler",
+        "securityContext" : { },
+        "terminationGracePeriodSeconds" : 30
+      }
+    },
+    "test" : false,
+    "triggers" : [ {
+      "type" : "ConfigChange"
+    }, {
+      "imageChangeParams" : {
+        "automatic" : true,
+        "containerNames" : [ "spring-boot" ],
+        "from" : {
+          "kind" : "ImageStreamTag",
+          "name" : "fraud-static-rules:1.0.0.0",
+          "namespace" : "kafka"
+        }
+      },
+      "type" : "ImageChange"
+    }, {
+      "type" : "ConfigChange"
+    } ]
+  },
+  "status" : {
+    "availableReplicas" : 1,
+    "conditions" : [ {
+      "lastTransitionTime" : "2019-10-07T14:43:29Z",
+      "lastUpdateTime" : "2019-10-07T14:43:29Z",
+      "message" : "Deployment config has minimum availability.",
+      "status" : "True",
+      "type" : "Available"
+    }, {
+      "lastTransitionTime" : "2019-10-07T16:32:27Z",
+      "lastUpdateTime" : "2019-10-07T16:32:27Z",
+      "message" : "replication controller \"fraud-static-rules-4\" is progressing",
+      "reason" : "ReplicationControllerUpdated",
+      "status" : "True",
+      "type" : "Progressing"
+    } ],
+    "details" : {
+      "causes" : [ {
+        "imageTrigger" : {
+          "from" : {
+            "kind" : "DockerImage",
+            "name" : "image-registry.openshift-image-registry.svc:5000/kafka/fraud-static-rules@sha256:e3bd2a57e892e4c21eec4ede8ef0274a41e2461b276dd318ea1790e6f532b44a"
+          }
+        },
+        "type" : "ImageChange"
+      } ],
+      "message" : "image change"
+    },
+    "latestVersion" : 4,
+    "observedGeneration" : 6,
+    "readyReplicas" : 1,
+    "replicas" : 2,
+    "unavailableReplicas" : 1,
+    "updatedReplicas" : 1
+  }
+}
